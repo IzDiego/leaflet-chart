@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import "leaflet/dist/leaflet.css"; // inside .js file
+import 'react-leaflet-markercluster/dist/styles.min.css'; // inside .js file
 import "./App.css";
 import { dataContribuyentes } from "./components/maps/data";
 import { MyResponsiveLine } from "./components/chart/chart";
