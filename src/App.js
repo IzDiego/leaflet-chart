@@ -22,6 +22,7 @@ function App() {
         {dataContribuyentes.features.map((contribuyente) => {
           const lat = contribuyente.geometry.coordinates[1];
           const long = contribuyente.geometry.coordinates[0];
+          console.log(contribuyente.properties)
           const vivienda_id = contribuyente.properties.id_vivienda;
           let chart = [];
           dataViviendas.features.forEach((vivienda) => {
@@ -68,6 +69,8 @@ function App() {
           return (
             <Marker position={coordenada} icon={violetIcon}>
               <Popup minWidth="auto">
+                <h>Curp: {contribuyente.properties.curp}</h>
+                <h>Edad: {contribuyente.properties.edad_actual}</h>
                 <div className="chart">
                   <MyResponsiveLine data={chartData} />
                 </div>
