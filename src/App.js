@@ -3,7 +3,7 @@ import "leaflet/dist/leaflet.css";
 import "./App.css";
 import { dataContribuyentes } from "./components/maps/data";
 import { MyResponsiveLine } from "./components/chart/chart";
-import { chartData } from "./components/chart/chartData";
+import { dataViviendas } from "./components/maps/dataViviendas";
 import { violetIcon } from "./components/maps/Icons";
 
 const center = [20.60722, -100.41];
@@ -22,11 +22,53 @@ function App() {
         {dataContribuyentes.features.map((contribuyente) => {
           const lat = contribuyente.geometry.coordinates[1];
           const long = contribuyente.geometry.coordinates[0];
+          const vivienda_id = contribuyente.properties.id_vivienda;
+          let chart = [];
+          dataViviendas.features.forEach((vivienda) => {
+            if (vivienda_id === vivienda.properties.id_vivienda) {
+              chart.push(
+                vivienda.properties.X2018,
+                vivienda.properties.X2019,
+                vivienda.properties.X2020,
+                vivienda.properties.X2021,
+                vivienda.properties.X2022
+              );
+            }
+          });
+          const chartData = [
+            {
+              id: "Impuestos",
+              color: "hsl(106, 70%, 50%)",
+              data: [
+                {
+                  x: "2018",
+                  y: chart[0],
+                },
+                {
+                  x: "2019",
+                  y: chart[1],
+                },
+                {
+                  x: "2020",
+                  y: chart[2],
+                },
+                {
+                  x: "2021",
+                  y: chart[3],
+                },
+                {
+                  x: "2022",
+                  y: chart[4],
+                },
+              ],
+            },
+          ];
+          //
           const coordenada = [lat, long];
           return (
             <Marker position={coordenada} icon={violetIcon}>
-              <Popup minWidth='auto'>
-                <div className='chart'>
+              <Popup minWidth="auto">
+                <div className="chart">
                   <MyResponsiveLine data={chartData} />
                 </div>
               </Popup>
