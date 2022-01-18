@@ -6,13 +6,13 @@ import { MyResponsiveLine } from "./components/chart/chart";
 import { chartData } from "./components/chart/chartData";
 import { violetIcon } from "./components/maps/Icons";
 
-const center = [19.432670058417447, -99.13311169359423];
+const center = [20.60722, -100.41];
 function App() {
   return (
     <>
       <MapContainer
         center={center}
-        zoom={10}
+        zoom={11}
         style={{ width: "100vw", height: "100vh" }}
       >
         <TileLayer
