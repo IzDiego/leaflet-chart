@@ -1,10 +1,12 @@
 import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import "leaflet/dist/leaflet.css"; // inside .js file
+import 'react-leaflet-markercluster/dist/styles.min.css'; // inside .js file
 import "./App.css";
 import { dataContribuyentes } from "./components/maps/data";
 import { MyResponsiveLine } from "./components/chart/chart";
 import { dataViviendas } from "./components/maps/dataViviendas";
 import { violetIcon } from "./components/maps/Icons";
+import MarkerClusterGroup from "react-leaflet-markercluster";
 
 const center = [20.60722, -100.41];
 function App() {
@@ -18,7 +20,7 @@ function App() {
         <TileLayer
           url="https://api.maptiler.com/maps/osm-standard/{z}/{x}/{y}.jpg?key=dTFewUiAMuFIZwgDv3nB"
           attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-        />
+        /><MarkerClusterGroup>
         {dataContribuyentes.features.map((contribuyente) => {
           const lat = contribuyente.geometry.coordinates[1];
           const long = contribuyente.geometry.coordinates[0];
@@ -66,17 +68,19 @@ function App() {
           //
           const coordenada = [lat, long];
           return (
-            <Marker position={coordenada} icon={violetIcon}>
-              <Popup minWidth="auto">
-                <h>Curp: {contribuyente.properties.curp}</h>
-                <h>Edad: {contribuyente.properties.edad_actual}</h>
-                <div className="chart">
-                  <MyResponsiveLine data={chartData} />
-                </div>
-              </Popup>
-            </Marker>
+            
+              <Marker position={coordenada} icon={violetIcon}>
+                <Popup minWidth="auto">
+                  <p>Curp: {contribuyente.properties.curp}</p>
+                  <p>Edad: {contribuyente.properties.edad_actual}</p>
+                  <div className="chart">
+                    <MyResponsiveLine data={chartData} />
+                  </div>
+                </Popup>
+              </Marker>
           );
         })}
+        </MarkerClusterGroup>
       </MapContainer>
     </>
   );
