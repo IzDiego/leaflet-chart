@@ -22,7 +22,6 @@ function App() {
         {dataContribuyentes.features.map((contribuyente) => {
           const lat = contribuyente.geometry.coordinates[1];
           const long = contribuyente.geometry.coordinates[0];
-          console.log(contribuyente.properties)
           const vivienda_id = contribuyente.properties.id_vivienda;
           let chart = [];
           dataViviendas.features.forEach((vivienda) => {
