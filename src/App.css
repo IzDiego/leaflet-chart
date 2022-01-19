@@ -12,6 +12,15 @@
   width: 400px;
 }
 
+.dragBar{
+  position: absolute;
+  z-index: 1
+}
+
+.map{
+  position: absolute;
+  z-index: 0
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

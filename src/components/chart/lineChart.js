@@ -9,7 +9,7 @@ import { ResponsiveLine } from '@nivo/line'
 export const MyResponsiveLine = ({ data /* see data tab */ }) => (
     <ResponsiveLine
         data={data}
-        margin={{ top: 50, right: 35, bottom: 50, left: 60 }}
+        margin={{ top: 5, right: 35, bottom: 50, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{
             type: 'linear',
