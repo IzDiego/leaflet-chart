@@ -13,10 +13,10 @@ import "./App.css";
 import { useState } from "react";
 import { dataContribuyentes } from "./components/maps/data";
 import { dataViviendas } from "./components/maps/dataViviendas";
-import { MyResponsiveBar } from "./components/chart/barChart";
+/* import { MyResponsiveBar } from "./components/chart/barChart"; */
 import { violetIcon } from "./components/maps/Icons";
 import MarkerClusterGroup from "react-leaflet-markercluster";
-import DragBar from "./components/dragBar/dragBar";
+/* import DragBar from "./components/dragBar/dragBar"; */
 import PopupTabs from './components/tabs/tabs'
 
 function MyBoundEvent() {
@@ -67,12 +67,12 @@ function MyBoundEvent() {
       }
       console.log("Contribuyentes count", totalContribuyentes);
       console.log("Viviendas count", totalViviendas);
-      const barData = [
+      /* const barData = [
         {
           prom_pago: totalProb_pago,
           prom_pagoColor: "hsl(153, 70%, 50%)",
         },
-      ];
+      ]; */
 
       /* return (
         
