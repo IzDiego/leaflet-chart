@@ -104,8 +104,6 @@ function MyBoundEvent({ screenInfo, setScreenInfo }) {
 const center = [20.60722, -100.41];
 function App() {
   const [screenInfo, setScreenInfo] = useState([]);
-  console.log("ScreenInfo: ");
-  console.log(screenInfo);
 
   return (
     <>
@@ -126,7 +124,7 @@ function App() {
           attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         />
         <MyBoundEvent setScreenInfo={setScreenInfo} style={{ zIndex: 4 }} />
-        <MarkerClusterGroup>
+        <MarkerClusterGroup maxClusterRadius = '35'>
           {dataViviendas.features.map((vivienda) => {
             const lat = vivienda.geometry.coordinates[1];
             const long = vivienda.geometry.coordinates[0];
@@ -203,7 +201,7 @@ function App() {
         <Box p={1}>
           <Typography variant="h5">Total contribuyentes: {screenInfo.Contribuyentes}</Typography>
           <Typography variant="h5">Total viviendas: {screenInfo.Viviendas}</Typography>
-          <Typography variant="h5">Prob de pago:{screenInfo.totalProb_pago}</Typography>
+          <Typography variant="h5">Prob de pago: {screenInfo.totalProb_pago}</Typography>
         </Box>
       </Paper>
     </>
