@@ -12,14 +12,9 @@
   width: 400px;
 }
 
-.dragBar{
+div.arriba{
   position: absolute;
-  z-index: 1
-}
-
-.map{
-  position: absolute;
-  z-index: 0
+  z-index: 3;
 }
 
 @media (prefers-reduced-motion: no-preference) {

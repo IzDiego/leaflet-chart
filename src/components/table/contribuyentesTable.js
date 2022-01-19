@@ -67,7 +67,7 @@ export const TablaContribuyentes = ({ contribuyentes }) => {
                     {columns.map((column) => {
                       const value = row[column.field];
                       return (
-                        <TableCell key={column.field} align='right'>
+                        <TableCell key={column.field} align='center'>
                           {column.format && typeof value === 'number'
                             ? column.format(value)
                             : value}
