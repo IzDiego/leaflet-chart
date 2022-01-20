@@ -140,8 +140,8 @@ function App() {
         center={center}
         zoom={11}
         style={{
-          width: "100vw",
-          height: "100vh",
+          width: "99vw",
+          height: "98vh",
           zIndex: 1,
           position: "relative",
         }}
