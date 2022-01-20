@@ -61,10 +61,10 @@ function MyBoundEvent({ screenInfo, setScreenInfo }) {
             probPago.push(vivienda.properties.prob_pago);
             totalViviendas++;
             x2018 = x2018 + vivienda.properties.X2018;
-            x2019 = x2018 + vivienda.properties.X2019;
-            x2020 = x2018 + vivienda.properties.X2020;
-            x2021 = x2018 + vivienda.properties.X2021;
-            x2022 = x2018 + vivienda.properties.X2022;
+            x2019 = x2019 + vivienda.properties.X2019;
+            x2020 = x2020 + vivienda.properties.X2020;
+            x2021 = x2021 + vivienda.properties.X2021;
+            x2022 = x2022 + vivienda.properties.X2022;
           }
         } else {
         }
