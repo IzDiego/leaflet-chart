@@ -1,17 +1,17 @@
 import { ResponsiveBar } from "@nivo/bar";
 
-const MyResponsiveBar = ({ data /* see data tab */ }) => (
+export const AñosPagoChartBar = ({ data /* see data tab */ }) => (
   <ResponsiveBar
     data={data}
-    keys={["prom_pago"]}
-    /* indexBy="viviendas" */
-    margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
+    keys={["pagos"]}
+    indexBy="año"
+    /* minValue={520000} */
+    margin={{ top: 20, right: 30, bottom: 50, left: 60 }}
     padding={0.3}
-    maxValue={1}
-    groupMode="grouped"
     valueScale={{ type: "linear" }}
     indexScale={{ type: "band", round: true }}
-    colors={{ scheme: "nivo" }}
+    colors={{ scheme: "category10" }}
+    colorBy="indexValue"
     defs={[
       {
         id: "dots",
@@ -31,7 +31,7 @@ const MyResponsiveBar = ({ data /* see data tab */ }) => (
         lineWidth: 6,
         spacing: 10,
       },
-    ]}/* 
+    ]} /* 
     fill={[
       {
         match: {
@@ -56,7 +56,7 @@ const MyResponsiveBar = ({ data /* see data tab */ }) => (
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: "Media de Pagos",
+      legend: "Año",
       legendPosition: "middle",
       legendOffset: 32,
     }}
@@ -64,17 +64,23 @@ const MyResponsiveBar = ({ data /* see data tab */ }) => (
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: "Porcentaje",
+      legend: "Pago total",
       legendPosition: "middle",
       legendOffset: -40,
     }}
     labelSkipWidth={12}
     labelSkipHeight={12}
     labelTextColor={{
-      from: "color",
-      modifiers: [["darker", 1.6]],
+        from: 'color',
+        modifiers: [
+            [
+                'brighter',
+                '2.5'
+            ]
+        ]
     }}
-    legends={[
+
+    /* legends={[
       {
         dataFrom: "keys",
         anchor: "bottom-right",
@@ -97,11 +103,11 @@ const MyResponsiveBar = ({ data /* see data tab */ }) => (
           },
         ],
       },
-    ]}
+    ]} */
     role="application"
     ariaLabel="Nivo bar chart demo"
-    barAriaLabel={function (e) {
+    /* barAriaLabel={function (e) {
       return e.id + ": " + e.formattedValue + " in country: " + e.indexValue;
-    }}
+    }} */
   />
 );

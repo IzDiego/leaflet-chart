@@ -13,10 +13,10 @@ import "./App.css";
 import { useState } from "react";
 import { dataContribuyentes } from "./components/maps/data";
 import { dataViviendas } from "./components/maps/dataViviendas";
-/* import { MyResponsiveBar } from "./components/chart/barChart"; */
+import { AñosPagoChartBar } from "./components/chart/añosPagoChartBar";
+import { MyViviedaChartBar } from "./components/chart/viviendaChartBar";
 import { violetIcon } from "./components/maps/Icons";
 import MarkerClusterGroup from "react-leaflet-markercluster";
-/* import DragBar from "./components/dragBar/dragBar"; */
 import PopupTabs from "./components/tabs/tabs";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -77,34 +77,55 @@ function MyBoundEvent({ screenInfo, setScreenInfo }) {
       setScreenInfo(mapInfo);
       console.log("Contribuyentes count", totalContribuyentes);
       console.log("Viviendas count", totalViviendas);
-      /* const barData = [
-        {
-          prom_pago: totalProb_pago,
-          prom_pagoColor: "hsl(153, 70%, 50%)",
-        },
-      ]; */
     },
   });
 
-  return null; /* (
-    <Paper
-      style={{ zIndex: 4, position: "absolute", right: 10, top: 100 }}
-      elevation={6}
-    >      
-      <Box p={1}>
-        <Typography variant="h5">Elevation</Typography>
-        <Typography variant="h5">Total contribuyentes:9</Typography>
-        <Typography variant="h5">Total viviendas:1111</Typography>
-        <Typography variant="h5">Prob de pago:.0000000</Typography>
-      </Box>
-    </Paper>
-  ); */
+  return null; 
 }
 
 const center = [20.60722, -100.41];
 function App() {
   const [screenInfo, setScreenInfo] = useState([]);
-
+  const chartViviendasBarras = [
+    {
+      prom_pago: screenInfo.totalProb_pago,
+      prom_pagoColor: "hsl(153, 70%, 50%)",
+    },
+  ];
+  var x2018 =0;
+  var x2019 =0;
+  var x2020 =0;
+  var x2021 =0;
+  var x2022 =0;
+  dataViviendas.features.map((vivienda) => {
+    x2018 = x2018+vivienda.properties.X2018;
+    x2019 = x2018+vivienda.properties.X2019;
+    x2020 = x2018+vivienda.properties.X2020;
+    x2021 = x2018+vivienda.properties.X2021;
+    x2022 = x2018+vivienda.properties.X2022;
+    return null
+  });
+  const chartPagosAño =[
+    {
+      año:'2018',
+      pagos:  x2018
+    },
+    {
+      año:'2019',
+      pagos:  x2019
+    },
+    {
+      año:'2020',
+      pagos:  x2020
+    },{
+      año:'2021',
+      pagos:  x2021
+    },
+    {
+      año:'2022',
+      pagos:  x2022
+    }
+  ]
   return (
     <>
       <div className="dragBar">{/* <DragBar /> */}</div>
@@ -124,7 +145,7 @@ function App() {
           attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
         />
         <MyBoundEvent setScreenInfo={setScreenInfo} style={{ zIndex: 4 }} />
-        <MarkerClusterGroup maxClusterRadius = '35'>
+        <MarkerClusterGroup maxClusterRadius="35">
           {dataViviendas.features.map((vivienda) => {
             const lat = vivienda.geometry.coordinates[1];
             const long = vivienda.geometry.coordinates[0];
@@ -199,9 +220,28 @@ function App() {
         elevation={6}
       >
         <Box p={1}>
-          <Typography variant="h5">Total contribuyentes: {screenInfo.Contribuyentes}</Typography>
-          <Typography variant="h5">Total viviendas: {screenInfo.Viviendas}</Typography>
-          <Typography variant="h5">Prob de pago: {screenInfo.totalProb_pago}</Typography>
+          <Typography variant="h5">
+            Total contribuyentes: {screenInfo.Contribuyentes}
+          </Typography>
+          <Typography variant="h5">
+            Total viviendas: {screenInfo.Viviendas}
+          </Typography>
+          <div
+            style={{
+              height: 250,
+              width: 300,
+            }}
+          >
+            <AñosPagoChartBar data={chartPagosAño} />
+          </div>
+          <div
+            style={{
+              height: 250,
+              width: 300,
+            }}
+          >
+            <MyViviedaChartBar data={chartViviendasBarras} />
+          </div>
         </Box>
       </Paper>
     </>
