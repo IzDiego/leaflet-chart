@@ -7,12 +7,12 @@ export const MyViviedaChartBar = ({ data /* see data tab */ }) => (
     /* indexBy="viviendas" */
     margin={{ top: 20, right: 30, bottom: 50, left: 60 }}
     padding={0.3}
+    valueFormat=" ^-.4~g"
     maxValue={1}
-    groupMode="grouped"
     valueScale={{ type: "linear" }}
     indexScale={{ type: "band", round: true }}
     colors={{ scheme: "category10" }}
-    defs={[
+    /* defs={[
       {
         id: "dots",
         type: "patternDots",
@@ -31,20 +31,6 @@ export const MyViviedaChartBar = ({ data /* see data tab */ }) => (
         lineWidth: 6,
         spacing: 10,
       },
-    ]}/* 
-    fill={[
-      {
-        match: {
-          id: "fries",
-        },
-        id: "dots",
-      },
-      {
-        match: {
-          id: "sandwich",
-        },
-        id: "lines",
-      },
     ]} */
     borderColor={{
       from: "color",
@@ -53,7 +39,7 @@ export const MyViviedaChartBar = ({ data /* see data tab */ }) => (
     axisTop={null}
     axisRight={null}
     axisBottom={{
-      tickSize: 5,
+      tickSize: 10,
       tickPadding: 5,
       tickRotation: 0,
       legend: "Media de Pagos",

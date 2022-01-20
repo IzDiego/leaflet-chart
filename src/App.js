@@ -30,6 +30,12 @@ function MyBoundEvent({ screenInfo, setScreenInfo }) {
   let totalProb_pago = 0;
   let probPago = [];
 
+  let x2018 = 0;
+  let x2019 = 0;
+  let x2020 = 0;
+  let x2021 = 0;
+  let x2022 = 0;
+
   const map = useMapEvents({
     moveend() {
       setBounds(map.getBounds());
@@ -54,6 +60,11 @@ function MyBoundEvent({ screenInfo, setScreenInfo }) {
           if (lng > bounds._southWest.lng && lng < bounds._northEast.lng) {
             probPago.push(vivienda.properties.prob_pago);
             totalViviendas++;
+            x2018 = x2018 + vivienda.properties.X2018;
+            x2019 = x2018 + vivienda.properties.X2019;
+            x2020 = x2018 + vivienda.properties.X2020;
+            x2021 = x2018 + vivienda.properties.X2021;
+            x2022 = x2018 + vivienda.properties.X2022;
           }
         } else {
         }
@@ -73,6 +84,11 @@ function MyBoundEvent({ screenInfo, setScreenInfo }) {
         Viviendas: totalViviendas,
         totalProb_pago: totalProb_pago / totalViviendas,
         probPago: probPago,
+        x2018:x2018,
+        x2019:x2019,
+        x2020:x2020,
+        x2021:x2021,
+        x2022:x2022,
       };
       setScreenInfo(mapInfo);
       console.log("Contribuyentes count", totalContribuyentes);
@@ -80,7 +96,7 @@ function MyBoundEvent({ screenInfo, setScreenInfo }) {
     },
   });
 
-  return null; 
+  return null;
 }
 
 const center = [20.60722, -100.41];
@@ -92,40 +108,29 @@ function App() {
       prom_pagoColor: "hsl(153, 70%, 50%)",
     },
   ];
-  var x2018 =0;
-  var x2019 =0;
-  var x2020 =0;
-  var x2021 =0;
-  var x2022 =0;
-  dataViviendas.features.map((vivienda) => {
-    x2018 = x2018+vivienda.properties.X2018;
-    x2019 = x2018+vivienda.properties.X2019;
-    x2020 = x2018+vivienda.properties.X2020;
-    x2021 = x2018+vivienda.properties.X2021;
-    x2022 = x2018+vivienda.properties.X2022;
-    return null
-  });
-  const chartPagosAño =[
+
+  const chartPagosAño = [
     {
-      año:'2018',
-      pagos:  x2018
+      año: "2018",
+      pagos: screenInfo.x2018 / 1000,
     },
     {
-      año:'2019',
-      pagos:  x2019
+      año: "2019",
+      pagos: screenInfo.x2019 / 1000,
     },
     {
-      año:'2020',
-      pagos:  x2020
-    },{
-      año:'2021',
-      pagos:  x2021
+      año: "2020",
+      pagos: screenInfo.x2020 / 1000,
     },
     {
-      año:'2022',
-      pagos:  x2022
-    }
-  ]
+      año: "2021",
+      pagos: screenInfo.x2021 / 1000,
+    },
+    {
+      año: "2022",
+      pagos: screenInfo.x2022 / 1000,
+    },
+  ];
   return (
     <>
       <div className="dragBar">{/* <DragBar /> */}</div>
