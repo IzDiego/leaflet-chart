@@ -6,7 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-
+import "../../App.css";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -60,9 +60,11 @@ export default function PopupTabs({ vivienda_id, chart, contribuyentes }) {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0} spam>
-        <div className="chart">
-          <b>Id de Vivienda: {vivienda_id}</b>
-          <MyResponsiveLine data={chart} />
+        <div className="chart-1">
+          
+        <Typography>{vivienda_id}</Typography>
+        <MyResponsiveLine styles={{height: 250}} data={chart} />
+          
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>

@@ -51,7 +51,7 @@ function MyBoundEvent({ screenInfo, setScreenInfo }) {
         return null;
       });
       if (totalContribuyentes === 0) {
-        console.log("Sin resultados de contribuyentes");
+        /* console.log("Sin resultados de contribuyentes"); */
       }
       dataViviendas.features.map((vivienda) => {
         const lat = vivienda.geometry.coordinates[1];
@@ -71,13 +71,15 @@ function MyBoundEvent({ screenInfo, setScreenInfo }) {
         return null;
       });
       if (totalViviendas === 0) {
-        console.log("Sin resultados de viviendas");
+        /*         console.log("Sin resultados de viviendas");
+         */
       } else {
         totalProb_pago = probPago.reduce(
           (partial_sum, a) => partial_sum + a,
           0
         );
-        console.log("prob media de pago: ", totalProb_pago / totalViviendas);
+        /*         console.log("prob media de pago: ", totalProb_pago / totalViviendas);
+         */
       }
       const mapInfo = {
         Contribuyentes: totalContribuyentes,
@@ -91,8 +93,8 @@ function MyBoundEvent({ screenInfo, setScreenInfo }) {
         x2022: x2022,
       };
       setScreenInfo(mapInfo);
-      console.log("Contribuyentes count", totalContribuyentes);
-      console.log("Viviendas count", totalViviendas);
+      /* console.log("Contribuyentes count", totalContribuyentes);
+      console.log("Viviendas count", totalViviendas); */
     },
   });
 
@@ -154,6 +156,7 @@ function App() {
           {dataViviendas.features.map((vivienda) => {
             const lat = vivienda.geometry.coordinates[1];
             const long = vivienda.geometry.coordinates[0];
+            const vivienda_dir = vivienda.properties.address_google;
             const vivienda_id = vivienda.properties.id_vivienda;
             let contribuyentesVivienda = [];
 
@@ -205,10 +208,10 @@ function App() {
             const coordenada = [lat, long];
             return (
               <Marker position={coordenada} icon={violetIcon}>
-                <Popup minWidth="auto">
+                <Popup minWidth="auto" height="500">
                   <div>
                     <PopupTabs
-                      vivienda_id={vivienda_id}
+                      vivienda_id={vivienda_dir}
                       chart={chartData}
                       contribuyentes={contribuyentesVivienda}
                     />
@@ -220,23 +223,39 @@ function App() {
         </MarkerClusterGroup>
       </MapContainer>
       <Button
-      className="boton-panel-flotante"
-      variant="contained"
-      onClick={()=>{
-        console.log(document.getElementsByClassName("paper-flotante")[0].style);
-        if(document.getElementsByClassName("boton-panel-flotante")[0].textContent === 'Cerrar Panel'){
-          document.getElementsByClassName("boton-panel-flotante")[0].textContent = 'Abrir Panel';
-          document.getElementsByClassName("paper-flotante")[0].style.display = 'none';
-      }else{
-        document.getElementsByClassName("boton-panel-flotante")[0].textContent = 'Cerrar Panel'  
-        document.getElementsByClassName("paper-flotante")[0].style.display = '';
-      }
-      }}
+        className="boton-panel-flotante"
+        variant="contained"
+        onClick={() => {
+          if (
+            document.getElementsByClassName("boton-panel-flotante")[0]
+              .textContent === "Cerrar Panel"
+          ) {
+            document.getElementsByClassName(
+              "boton-panel-flotante"
+            )[0].textContent = "Abrir Panel";
+            document.getElementsByClassName("paper-flotante")[0].style.display =
+              "none";
+          } else {
+            document.getElementsByClassName(
+              "boton-panel-flotante"
+            )[0].textContent = "Cerrar Panel";
+            document.getElementsByClassName("paper-flotante")[0].style.display =
+              "";
+          }
+        }}
         style={{ zIndex: 5, position: "absolute", right: 10, top: 60 }}
-      >Cerrar Panel</Button>
-      <Paper 
+      >
+        Cerrar Panel
+      </Button>
+      <Paper
         className="paper-flotante"
-        style={{opacity: 0.8, zIndex: 4, position: "absolute", right: 10, top: 100 }}
+        style={{
+          opacity: 0.8,
+          zIndex: 4,
+          position: "absolute",
+          right: 10,
+          top: 100,
+        }}
         elevation={6}
       >
         <Box p={1}>
