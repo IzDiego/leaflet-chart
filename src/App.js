@@ -20,7 +20,7 @@ import MarkerClusterGroup from "react-leaflet-markercluster";
 import PopupTabs from "./components/tabs/tabs";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import { Typography } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 
 function MyBoundEvent({ screenInfo, setScreenInfo }) {
   const initialMap = useMap();
@@ -84,11 +84,11 @@ function MyBoundEvent({ screenInfo, setScreenInfo }) {
         Viviendas: totalViviendas,
         totalProb_pago: totalProb_pago / totalViviendas,
         probPago: probPago,
-        x2018:x2018,
-        x2019:x2019,
-        x2020:x2020,
-        x2021:x2021,
-        x2022:x2022,
+        x2018: x2018,
+        x2019: x2019,
+        x2020: x2020,
+        x2021: x2021,
+        x2022: x2022,
       };
       setScreenInfo(mapInfo);
       console.log("Contribuyentes count", totalContribuyentes);
@@ -219,9 +219,24 @@ function App() {
           })}
         </MarkerClusterGroup>
       </MapContainer>
-
-      <Paper
-        style={{ zIndex: 4, position: "absolute", right: 10, top: 100 }}
+      <Button
+      className="boton-panel-flotante"
+      variant="contained"
+      onClick={()=>{
+        console.log(document.getElementsByClassName("paper-flotante")[0].style);
+        if(document.getElementsByClassName("boton-panel-flotante")[0].textContent === 'Cerrar Panel'){
+          document.getElementsByClassName("boton-panel-flotante")[0].textContent = 'Abrir Panel';
+          document.getElementsByClassName("paper-flotante")[0].style.display = 'none';
+      }else{
+        document.getElementsByClassName("boton-panel-flotante")[0].textContent = 'Cerrar Panel'  
+        document.getElementsByClassName("paper-flotante")[0].style.display = '';
+      }
+      }}
+        style={{ zIndex: 5, position: "absolute", right: 10, top: 60 }}
+      >Cerrar Panel</Button>
+      <Paper 
+        className="paper-flotante"
+        style={{opacity: 0.8, zIndex: 4, position: "absolute", right: 10, top: 100 }}
         elevation={6}
       >
         <Box p={1}>

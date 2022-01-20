@@ -40,7 +40,7 @@ export const AñosPagoChartBar = ({ data /* see data tab */ }) => (
     axisRight={null}
     axisBottom={{
       tickSize: 5,
-      tickPadding: 5,
+      tickPadding: 10,
       tickRotation: 0,
       legend:"Año" ,
       legendPosition: "middle",
